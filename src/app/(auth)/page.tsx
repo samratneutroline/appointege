@@ -1,5 +1,5 @@
 import { auth, signOut } from "@/auth"
-import { LoginButton } from "@/components/--auth/login-button"
+import { LoginButton } from "@/components/auth/login-button"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Poppins } from "next/font/google"
@@ -8,10 +8,6 @@ const font = Poppins({ subsets: ["latin"], weight: ["600"] })
 
 export default async function AuthLayout() {
   const session = await auth()
-
-  
-
-
 
   return (
     <main className="">
