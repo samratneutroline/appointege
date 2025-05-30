@@ -1,8 +1,12 @@
+// src/app/(auth)/login/page.tsx
+import { Suspense } from "react"
 import LoginForm from "@/components/auth/login-form"
-import React from "react"
+import LoadingSpinner from "@/components/loading-spinner"
 
-const LoginPage = () => {
-  return <LoginForm />
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <LoginForm />
+    </Suspense>
+  )
 }
-
-export default LoginPage
