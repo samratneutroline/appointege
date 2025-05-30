@@ -1,5 +1,5 @@
 // src/auth.ts
-import NextAuth from "next-auth"
+import NextAuth, { DefaultSession } from "next-auth"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import authConfig from "@/auth.config"
 import { db } from "@/lib/db"
@@ -11,16 +11,58 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  pages: {
+    signIn: "/login",
+    error: "/error", // Error code passed in query string as ?error=
+  },
+  events: {
+    async linkAccount({ user, account, profile }) {
+      // Update the new user in the database for emailVerfied
+      await db.user.update({
+        where: { id: user.id },
+        data: { emailVerified: new Date() }, // Set emailVerified to current date
+      })
+    },
+  },
   callbacks: {
+    // Only SignIn Callback can use prisma adapter as it happens on the server side for signIn
+    // jwt and session callbacks are called on the client side
+    async signIn({ user, account, profile }) {
+      console.log("SignIn Callback - User:", user)
+      // if (!user.id) {
+      //   console.error("SignIn Callback - No user found")
+      //   return false
+      // }
+
+      // const existingUser = await getUserById(user.id)
+      // console.log("SignIn Callback - Existing User:", existingUser)
+      // if (!existingUser || !existingUser.emailVerified) {
+      //   console.error("SignIn Callback - User not found or email not verified")
+      //   return false
+      // }
+
+      return true
+    },
+
     async jwt({ token, user }) {
-      // console.log("JWT Callback - User:", user)
+      // console.log("JWT Callback - User:------", user)
       // console.log("JWT Callback - Token:", token)
+      // this is one time user came from the credentials provider
+      // after it will be undefined on subsequent calls
       if (user) {
         token.sub = user.id
-        token.email = user.email
+
         token.name = user.name
         token.role = user.role // Add role to token
       }
+      // if (!token.sub) return token
+
+      // const existingUser = await getUserById(token?.sub)
+
+      // if (!existingUser) return token
+
+      // token.role = existingUser.role // Add role to token
+
       return token
     },
     async session({ session, token }) {

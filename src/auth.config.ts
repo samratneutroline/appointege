@@ -2,7 +2,7 @@ import Google from "next-auth/providers/google"
 import Credentails from "next-auth/providers/credentials"
 import type { NextAuthConfig } from "next-auth"
 import { LoginSchema } from "./schemas"
-import { getUserByEmail } from "./data/user"
+import { getUserByEmail, getUserById } from "./data/user"
 import bcrypt from "bcryptjs"
 
 export default {

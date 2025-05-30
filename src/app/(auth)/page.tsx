@@ -9,6 +9,10 @@ const font = Poppins({ subsets: ["latin"], weight: ["600"] })
 export default async function AuthLayout() {
   const session = await auth()
 
+  
+
+
+
   return (
     <main className="">
       {JSON.stringify(session, null, 2)}
@@ -27,13 +31,15 @@ export default async function AuthLayout() {
         <p className="text-slate-500 text-lg">
           A simple authentication service
         </p>
-        <div>
-          <LoginButton mode="" asChild>
-            <Button variant={"secondary"} size={"lg"}>
-              Sign in
-            </Button>
-          </LoginButton>
-        </div>
+        {!session?.user && (
+          <div>
+            <LoginButton asChild>
+              <Button variant={"secondary"} size={"lg"}>
+                Sign in
+              </Button>
+            </LoginButton>
+          </div>
+        )}
         <form
           action={async () => {
             "use server"
