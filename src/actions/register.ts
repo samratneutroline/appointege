@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs"
 import { SignupSchema, SignupSchemaType } from "@/schemas"
 import { db } from "@/lib/db"
 import { getUserByEmail } from "@/data/user"
+import { generateTokenForEmailVerification } from "@/lib/token"
 
 export async function register(values: SignupSchemaType) {
   const validateFields = SignupSchema.safeParse(values)
@@ -34,7 +35,9 @@ export async function register(values: SignupSchemaType) {
   // Optionally, you can return the new user or some success message
   // return newUser
   if (newUser) {
-    return { success: "Register successful!" }
+    // Send Verification Email
+    await generateTokenForEmailVerification(email)
+    return { success: "Email confirmation sent!" }
   }
 
   return { error: "Register failed!" }
