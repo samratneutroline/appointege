@@ -1,6 +1,11 @@
 import NewPasswordForm from "@/components/auth/new-password-form"
-import React from "react"
+import LoadingSpinner from "@/components/loading-spinner"
+import React, { Suspense } from "react"
 
 export default function NewPassword() {
-  return <NewPasswordForm />
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <NewPasswordForm />
+    </Suspense>
+  )
 }
