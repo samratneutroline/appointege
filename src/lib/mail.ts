@@ -15,6 +15,7 @@
 
 import nodemailer from "nodemailer"
 import { getBaseUrl } from "./baseUrl"
+import { getPasswordResetEmail } from "./email-templates"
 
 // Configuration
 const senderEmail = process.env.SENDER_EMAIL // Replace with your email
@@ -26,6 +27,13 @@ enum EmailType {
   TwoFactor = "TwoFactor",
 }
 
+const getEmailRedirectUrl = (type: EmailType, token: string) => {
+  const baseUrl = getBaseUrl()
+  return `${baseUrl}/${
+    type === EmailType.Verification ? "verify-email" : "new-password"
+  }?token=${token}`
+}
+
 /**
  *Sends email, either confirm or reset
  * @param email - Sends email to given address
@@ -33,17 +41,16 @@ enum EmailType {
  * @param type - Check either email is verify or reset
  * @returns - returns info of email sent
  */
+
 const sendEmail = async (
   email: string,
   token: string,
-  type: EmailType = EmailType.Verification
+  type: EmailType = EmailType.Verification,
+  template: string = ""
 ) => {
   try {
-    const baseUrl = getBaseUrl()
-
-    const confirmLink = `${baseUrl}/${
-      type === EmailType.Verification ? "verify-email" : "new-password"
-    }?token=${token}`
+    // Construct the confirmation link
+    const confirmLink = `${getEmailRedirectUrl(type, token)}`
 
     // Step 1: Create the transporter
     const transporter = nodemailer.createTransport({
@@ -66,11 +73,13 @@ const sendEmail = async (
           : "Reset your password"
       }`, // Subject line
       text: `Your ${type} token is: ${token}`, // Plain text
-      html: `<p> Click <a href="${confirmLink}">here</a> to ${
-        type === EmailType.Verification
-          ? "verify your email"
-          : "change your password"
-      }</p>`, // HTML content
+      html:
+        template ||
+        `<p> Click <a href="${confirmLink}">here</a> to ${
+          type === EmailType.Verification
+            ? "verify your email"
+            : "change your password"
+        }</p>`, // HTML content
     }
 
     // Step 3: Send the email
@@ -91,8 +100,14 @@ export async function sendVerificationEmail(email: string, token: string) {
 }
 
 // Reset Email
-export async function sendResetEmail(email: string, token: string) {
-  const info = await sendEmail(email, token, EmailType.Reset)
+export async function sendResetEmail(
+  email: string,
+  token: string,
+  userName: string
+) {
+  const resetLink = `${getEmailRedirectUrl(EmailType.Reset, token)}`
+  const template = getPasswordResetEmail(userName, resetLink)
+  const info = await sendEmail(email, token, EmailType.Reset, template)
 }
 
 // Two factor email

@@ -38,7 +38,11 @@ export const resetPassword = async (
     return { error: "Something went wrong while generating token!" }
   }
 
-  await sendResetEmail(generatedToken.email, generatedToken.token)
+  await sendResetEmail(
+    generatedToken.email,
+    generatedToken.token,
+    existingUser.name
+  )
 
   return { success: "Rest Link Sent to Email!" }
 }
