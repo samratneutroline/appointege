@@ -29,17 +29,25 @@ export const {
     // jwt and session callbacks are called on the client side
     async signIn({ user, account, profile }) {
       console.log("SignIn Callback - User:", user)
-      // if (!user.id) {
-      //   console.error("SignIn Callback - No user found")
-      //   return false
-      // }
+      // If the account type is not credentials, allow sign-in
+      // This is to allow sign-in with other providers like Google, GitHub, etc.
+      // If the account type is credentials, we need to check if the user exists and email is verified
+      if (account?.type !== "credentials") {
+        return true
+      }
 
-      // const existingUser = await getUserById(user.id)
+      // If user is not defined, prevent sign-in
+      if (!user.id) {
+        return false
+      }
+
+      const existingUser = await getUserById(user.id)
       // console.log("SignIn Callback - Existing User:", existingUser)
-      // if (!existingUser || !existingUser.emailVerified) {
-      //   console.error("SignIn Callback - User not found or email not verified")
-      //   return false
-      // }
+
+      // If user is not found or email is not verified, prevent sign-in
+      if (!existingUser || !existingUser.emailVerified) {
+        return false
+      }
 
       return true
     },

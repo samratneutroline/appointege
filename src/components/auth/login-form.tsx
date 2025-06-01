@@ -153,7 +153,7 @@ export default function LoginForm() {
                   />
                   <Link
                     className="text-xs mt-1 hover:underline text-muted-foreground hover:text-foreground"
-                    href={"/auth/reset"}
+                    href={"/reset-password"}
                   >
                     Forgot password?
                   </Link>

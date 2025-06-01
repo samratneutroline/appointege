@@ -5,6 +5,7 @@ import { SignupSchema, SignupSchemaType } from "@/schemas"
 import { db } from "@/lib/db"
 import { getUserByEmail } from "@/data/user"
 import { generateTokenForEmailVerification } from "@/lib/token"
+import { sendVerificationEmail } from "@/lib/mail"
 
 export async function register(values: SignupSchemaType) {
   const validateFields = SignupSchema.safeParse(values)
@@ -36,7 +37,11 @@ export async function register(values: SignupSchemaType) {
   // return newUser
   if (newUser) {
     // Send Verification Email
-    await generateTokenForEmailVerification(email)
+    const verficationToken = await generateTokenForEmailVerification(email)
+    if (!verficationToken) {
+      return { error: "Something went wrong while generating token!" }
+    }
+    await sendVerificationEmail(verficationToken.email, verficationToken.token)
     return { success: "Email confirmation sent!" }
   }
 

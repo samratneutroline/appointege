@@ -2,6 +2,7 @@
 
 import { signIn } from "@/auth"
 import { getUserByEmail } from "@/data/user"
+import { sendVerificationEmail } from "@/lib/mail"
 import { generateTokenForEmailVerification } from "@/lib/token"
 import { DEFAULT_LOGGEDIN_USER_REDIRECT } from "@/routes"
 import { LoginSchema, LoginSchemaType } from "@/schemas"
@@ -27,10 +28,15 @@ export async function login(values: LoginSchemaType) {
 
   // if email not verified, return error
   if (!existingUser.emailVerified) {
-    const token = await generateTokenForEmailVerification(email)
-    if (!token) {
+    const verificationToken = await generateTokenForEmailVerification(email)
+    if (!verificationToken) {
       return { error: "Something went wrong while verifying email!" }
     }
+    await sendVerificationEmail(
+      verificationToken.email,
+      verificationToken.token
+    )
+    // return success message
     return { success: "Email Confirmation Sent!" }
   }
 

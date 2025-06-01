@@ -46,9 +46,12 @@ export default function NewPasswordForm() {
   const onSubmit = (values: NewPasswordSchemaType) => {
     setError("")
     setSuccess("")
+    if (!token) {
+      setError("Token is missing!")
+      return
+    }
     startTransition(async () => {
-      const result = await changePassword(values, token!)
-
+      const result = await changePassword(values, token)
       // Fallback in case `result` is undefined or invalid
       if (!result) {
         setError("Unexpected error, please try again!")

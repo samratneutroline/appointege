@@ -11,7 +11,7 @@
  * Users can access these routes without being logged in.
  * Common examples include the home page, about page, and contact page.
  */
-export const publicRoutes = ["/"]
+export const publicRoutes = ["/", "/verify-email"]
 
 /**
  * An array of routes that are used for authentication.
@@ -26,7 +26,7 @@ export const publicRoutes = ["/"]
 export const authRoutes = [
   "/login",
   "/register",
-  "/forgot-password",
+  "/new-password",
   "/reset-password",
   "/error",
 ]

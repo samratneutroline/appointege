@@ -26,3 +26,29 @@ export const generateTokenForEmailVerification = async (email: string) => {
     return null
   }
 }
+
+export const generateResetToken = async (email: string) => {
+  try {
+    const existingToken = await db.passwordResetToken.findFirst({
+      where: { email },
+    })
+    if (existingToken) {
+      // Optionally delete or return existing token
+      await db.passwordResetToken.delete({ where: { id: existingToken.id } })
+    }
+    const token = crypto.randomBytes(32).toString("hex")
+    const expiresAt = new Date(Date.now() + 1 * 60 * 60 * 1000) // 1 hours
+    const generatedToken = await db.passwordResetToken.create({
+      data: {
+        email,
+        token,
+        expiresAt,
+      },
+    })
+
+    return generatedToken
+  } catch (error) {
+    console.log("Error generating token for password reset:", error)
+    return null
+  }
+}
