@@ -58,7 +58,7 @@ const sendEmail = async (
 
     // Step 2: Email content
     const mailOptions = {
-      from: `"Next Auth" <${senderEmail}>`, // Sender address
+      from: `Appointege <${senderEmail}>`, // Sender address
       to: email, // Recipient address
       subject: `${
         type === EmailType.Verification
