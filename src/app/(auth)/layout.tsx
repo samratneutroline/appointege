@@ -1,8 +1,9 @@
-import React from "react"
-
 import { Calendar, CircleCheckBig, Clock, Users } from "lucide-react"
-
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export default function AuthLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <>
       <div className="min-h-screen flex">
@@ -134,5 +135,3 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     </>
   )
 }
-
-export default Layout
