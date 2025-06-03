@@ -48,13 +48,29 @@ export const LoginSchema = z.object({
 export type LoginSchemaType = z.infer<typeof LoginSchema>
 
 // ------------- SIGN UP
-export const SignupSchema = z.object({
-  email: z.string().email({ message: "Email is required!" }),
-  password: z
-    .string()
-    .min(5, { message: "Password must be at least 5 characters long!" }),
-  name: z.string().min(3, { message: "Minimum 3 characters required!" }),
-})
+export const SignupSchema = z
+  .object({
+    email: z.string().email({ message: "Email is required!" }),
+    name: z.string().min(3, { message: "Minimum 3 characters required!" }),
+    phone: z.string().min(10, {
+      message: "Phone number must be at least 10 characters long!",
+    }),
+    password: z
+      .string()
+      .min(5, { message: "Password must be at least 5 characters long!" }),
+    password1: z.string().min(5, {
+      message: "Password must be at least 5 characters long!",
+    }),
+  })
+  .superRefine((data, ctx) => {
+    if (data.password !== data.password1) {
+      ctx.addIssue({
+        path: ["password1"], // Points to the `password1` field
+        message: "Passwords must match!",
+        code: "custom",
+      })
+    }
+  })
 
 // Infer type for signup schema
 export type SignupSchemaType = z.infer<typeof SignupSchema>

@@ -16,14 +16,30 @@ export function Social() {
     })
   }
   return (
-    <div className="w-full flex items-center gap-x-2">
+    <>
+      {/* Line */}
+      <div className="my-4">
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-slate-300" />
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-4 bg-white text-slate-500">
+              Or continue with
+            </span>
+          </div>
+        </div>
+      </div>
+      {/* Google Button */}
       <Button
-        className="w-full"
-        variant={"outline"}
+        type="button"
+        variant="outline"
         onClick={() => onClick("google")}
+        className="cursor-pointer w-full h-11 border-slate-300 hover:bg-slate-50 rounded-xl transition-all duration-200 hover:scale-[1.02] text-sm"
       >
         <FcGoogle />
+        Sign up with Google
       </Button>
-    </div>
+    </>
   )
 }

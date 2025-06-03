@@ -40,7 +40,7 @@ export default async function verifyUser(
       where: { id: existingUser.id },
       data: {
         emailVerified: new Date(),
-        email: existinToken.email, // Ensure email is what token was generated for
+        email: existinToken.email, // Ensure email is what token was generate
       },
     })
 

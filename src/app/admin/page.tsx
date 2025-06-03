@@ -1,29 +1,10 @@
-import { signOut } from "@/auth"
-import { Button } from "@/components/ui/button"
+import Heading from "@/components/admin/heading"
 import React from "react"
 
+import { CalendarDays } from "lucide-react"
+
 const AdminPage = () => {
-  return (
-    <div>
-      AdminPage
-      <form
-        action={async () => {
-          "use server"
-          await signOut()
-        }}
-        className="mt-4"
-      >
-        <Button
-          variant={"outline"}
-          size={"lg"}
-          className="w-full"
-          type="submit"
-        >
-          Sign out
-        </Button>
-      </form>
-    </div>
-  )
+  return <main>Go to appointment</main>
 }
 
 export default AdminPage

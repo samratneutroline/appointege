@@ -17,6 +17,9 @@ import CardWrapper from "./card-wrapper"
 import { FormError } from "./form-error"
 import { FormSuccess } from "./form-success"
 import { resetPassword } from "@/actions/reset"
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
+import { ArrowLeft, ArrowRight, Mail } from "lucide-react"
+import Link from "next/link"
 
 export default function ResetForm() {
   const [isPending, startTransition] = useTransition()
@@ -57,43 +60,101 @@ export default function ResetForm() {
   }
 
   return (
-    <CardWrapper
-      headerLabel={"Forgot your password?"}
-      backButtonLabel={"Back to login"}
-      backButtonHref={"/auth/login"}
-    >
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 flex flex-col"
-        >
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  {/* Spread ...field for controlled input */}
-                  <Input
-                    disabled={isPending}
-                    {...field}
-                    placeholder="nischal.dev@example.com"
-                    //   disabled={isPending}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    // <CardWrapper
+    //   headerLabel={"Forgot your password?"}
+    //   backButtonLabel={"Back to login"}
+    //   backButtonHref={"/auth/login"}
+    // >
+    //   <Form {...form}>
+    //     <form
+    //       onSubmit={form.handleSubmit(onSubmit)}
+    //       className="space-y-4 flex flex-col"
+    //     >
+    //       <FormField
+    //         control={form.control}
+    //         name="email"
+    //         render={({ field }) => (
+    //           <FormItem>
+    //             <FormLabel>Email</FormLabel>
+    //             <FormControl>
+    //               {/* Spread ...field for controlled input */}
+    //               <Input
+    //                 disabled={isPending}
+    //                 {...field}
+    //                 placeholder="nischal.dev@example.com"
+    //                 //   disabled={isPending}
+    //               />
+    //             </FormControl>
+    //             <FormMessage />
+    //           </FormItem>
+    //         )}
+    //       />
 
-          <FormError message={error} />
-          <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit">
-            Rest Password
-          </Button>
-        </form>
-      </Form>
-    </CardWrapper>
+    //       <FormError message={error} />
+    //       <FormSuccess message={success} />
+    //       <Button disabled={isPending} type="submit">
+    //         Rest Password
+    //       </Button>
+    //     </form>
+    //   </Form>
+    // </CardWrapper>
+
+    <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0 transition-all duration-300 hover:shadow-3xl">
+      <CardHeader className="text-center pb-2 ">
+        <CardTitle className="text-2xl font-bold text-gray-800">
+          Reset Password
+        </CardTitle>
+        <p className="text-gray-600 leading-relaxed text-sm">
+          Enter the email associated with your account, and we'll send you a
+          password reset link.
+        </p>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm font-medium text-gray-700">
+                    Email Address
+                  </FormLabel>
+                  <FormControl>
+                    {/* Spread ...field for controlled input */}
+                    <Input
+                      disabled={isPending}
+                      {...field}
+                      placeholder="Enter your email address"
+                      className="pl-10 h-12 border-gray-200 focus:border-blue-400 focus:ring-blue-400 transition-all duration-200"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormError message={error} />
+            <FormSuccess message={success} />
+            <Button
+              disabled={isPending}
+              type="submit"
+              className="w-full h-11 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 text-sm"
+            >
+              Rest Password
+            </Button>
+
+            {/* Back to Login Link */}
+            <Link
+              href="/login"
+              className="w-full flex items-center justify-center text-sm text-sky-600 hover:text-sky-700 font-medium py-2 transition-all duration-200 hover:underline transform hover:scale-[1.02]"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Login
+            </Link>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   )
 }
