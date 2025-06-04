@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { FcGoogle } from "react-icons/fc"
-import { signIn } from "next-auth/react"
-import { Button } from "@/components/ui/button"
+import { FcGoogle } from "react-icons/fc";
+import { signIn } from "next-auth/react";
+import { Button } from "@/components/ui/button";
 // import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
-import { useSearchParams } from "next/navigation"
-import { DEFAULT_LOGGEDIN_USER_REDIRECT } from "@/routes"
+import { useSearchParams } from "next/navigation";
+import { DEFAULT_LOGGEDIN_USER_REDIRECT } from "@/routes";
 
 export function Social() {
   // const searchParams = useSearchParams()
@@ -13,8 +13,8 @@ export function Social() {
   const onClick = (provider: "google" | "github") => {
     signIn(provider, {
       redirectTo: DEFAULT_LOGGEDIN_USER_REDIRECT,
-    })
-  }
+    });
+  };
   return (
     <>
       {/* Line */}
@@ -24,7 +24,7 @@ export function Social() {
             <div className="w-full border-t border-slate-300" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-4 bg-white text-slate-500">
+            <span className="px-4 bg-white text-[#69696f] font-medium">
               Or continue with
             </span>
           </div>
@@ -41,5 +41,5 @@ export function Social() {
         Sign up with Google
       </Button>
     </>
-  )
+  );
 }
