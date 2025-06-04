@@ -9,100 +9,108 @@ export default function AuthLayout({
       <div className="min-h-screen flex">
         {/* Left Side - Branding (Hidden on mobile) */}
         <div
-          className="hidden lg:flex w-3/5 lg:w-3/6 xl:w-3/5  flex-col items-start justify-center text-white p-8 xl:p-16 relative overflow-hidden  "
+          className="hidden lg:flex w-3/5 lg:w-3/6 xl:w-3/5  flex-col items-start justify-center text-white p-8 xl:p-12 relative overflow-hidden gap-4 leading-16  "
           style={{
             background: "linear-gradient(to bottom right, #f4fafe, #e8eefd)",
           }}
         >
           {/* Content */}
-          <div className="relative z-10 text-start  w-full">
-            <div className="flex flex-col mb-4 gap-2">
-              <div className="flex items-center justify-start h-10">
-                <div className="w-10 h-10 bg-[#0ba6e9] rounded-xl flex items-center justify-center mr-3 ">
-                  <Calendar />
+          <div className="relative z-10 text-start flex flex-col gap-4  -top-26">
+            <div className="flex flex-col mb-4 gap-2 ">
+              <div className="flex items-center justify-start h-10 gap-3">
+                <div className="w-10 h-10 bg-[#0ba6e9] rounded-lg flex items-center justify-center  ">
+                  <Calendar
+                    style={{
+                      height: "24px",
+                      width: "24px",
+                      color: "white",
+                    }}
+                  />
                 </div>
 
-                <h1 className="text-3xl lg:text-2xl text-black font-bold">
+                <h1 className="text-3xl lg:text-2xl text-[#1e293b] font-bold ">
                   Appointege
                 </h1>
               </div>
-              <p className="text-[#485669] text-lg font-medium -tracking-[0.0045rem] leading-7  ">
+              <p className="text-[#475569] text-lg font-[400]  ">
                 Professional Appointment Management
               </p>
             </div>
 
-            <div className="flex flex-col gap-6 mb-4  ">
-              <div className="flex flex-col">
-                <p className="text-start text-3xl xl:text-4xl text-black font-extrabold">
-                  Streamline Your
-                </p>
-                <span className="text-start text-3xl xl:text-4xl text-[#0ba6e9] font-extrabold">
-                  Appointment Workflow
-                </span>
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-6 mb-4  ">
+                <div className="flex flex-col">
+                  <p className="text-start text-3xl xl:text-4xl text-black font-extrabold">
+                    Streamline Your
+                  </p>
+                  <span className="text-start text-3xl xl:text-4xl text-[#0ba6e9] font-extrabold">
+                    Appointment Workflow
+                  </span>
+                </div>
+                <div className="text-[18px] xl:text-lg text-[#485669] font-medium  ">
+                  Transform how you manage appointments with our intuitive
+                  platform designed for modern professionals.
+                </div>
               </div>
-              <div className="text-[18px] xl:text-lg text-[#485669] font-medium  ">
-                Transform how you manage appointments with our intuitive
-                platform designed for modern professionals.
-              </div>
-            </div>
 
-            {/* Feature highlights */}
-            <div className="space-y-3 text-black font-semibold">
-              <div className="flex items-center text-blue-100 gap-3">
-                <div className="h-7 w-7 bg-[#e0f1fe] rounded-md flex justify-center items-center">
-                  <Clock
-                    style={{
-                      height: "16px",
-                      width: "16px",
-                      color: "#0185c8",
-                    }}
-                  />
+              {/* Feature highlights */}
+              <div className="space-y-3 text-black font-semibold">
+                <div className="flex items-center text-blue-100 gap-3">
+                  <div className="h-7 w-7 bg-[#e0f1fe] rounded-md flex justify-center items-center">
+                    <Clock
+                      style={{
+                        height: "16px",
+                        width: "16px",
+                        color: "#0185c8",
+                      }}
+                    />
+                  </div>
+                  <span className="text-[#485669] text-sm">
+                    Smart scheduling automation
+                  </span>
                 </div>
-                <span className="text-[#485669] text-sm">
-                  Smart scheduling automation
-                </span>
-              </div>
-              <div className="flex items-center text-blue-100 gap-3">
-                <div className="h-7 w-7 bg-[#e0f1fe] rounded-md flex justify-center items-center">
-                  <Users
-                    style={{
-                      height: "16px",
-                      width: "16px",
-                      color: "#0185c8",
-                    }}
-                  />
+                <div className="flex items-center text-blue-100 gap-3">
+                  <div className="h-7 w-7 bg-[#e0f1fe] rounded-md flex justify-center items-center">
+                    <Users
+                      style={{
+                        height: "16px",
+                        width: "16px",
+                        color: "#0185c8",
+                      }}
+                    />
+                  </div>
+                  <span className="text-[#485669] text-sm">
+                    Seamless client management
+                  </span>
                 </div>
-                <span className="text-[#485669] text-sm">
-                  Seamless client management
-                </span>
-              </div>
-              <div className="flex items-center text-blue-100 gap-3">
-                <div className="h-7 w-7 bg-[#e0f1fe] rounded-md flex justify-center items-center">
-                  <CircleCheckBig
-                    style={{
-                      height: "16px",
-                      width: "16px",
-                      color: "#0185c8",
-                    }}
-                  />
+                <div className="flex items-center text-blue-100 gap-3">
+                  <div className="h-7 w-7 bg-[#e0f1fe] rounded-md flex justify-center items-center">
+                    <CircleCheckBig
+                      style={{
+                        height: "16px",
+                        width: "16px",
+                        color: "#0185c8",
+                      }}
+                    />
+                  </div>
+                  <span className="text-[#485669] text-sm">
+                    Real-time availability sync
+                  </span>
                 </div>
-                <span className="text-[#485669] text-sm">
-                  Real time availability sync
-                </span>
               </div>
             </div>
           </div>
           {/* Decorative Calendar Grid */}
-          <div className="absolute bottom-30 left-16 grid grid-cols-7 gap-1 w-[280px] opacity-30">
+          <div className="absolute bottom-48 left-12 grid grid-cols-7 gap-1 w-[320px] opacity-30">
             {Array.from({ length: 28 }, (_, i) => (
               <div
                 key={i}
-                className={`aspect-square rounded ${
+                className={`aspect-square rounded  ${
                   i % 7 === 0 || i % 7 === 6
-                    ? "bg-slate-200"
+                    ? "bg-slate-200 h-10.5 w-10.5 "
                     : Math.random() > 0.7
-                    ? "bg-sky-300"
-                    : "bg-slate-100"
+                    ? "bg-sky-300/60 h-10.5 w-10.5"
+                    : "bg-slate-100/60 h-10.5 w-10.5"
                 }`}
               />
             ))}

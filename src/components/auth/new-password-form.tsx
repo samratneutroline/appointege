@@ -70,109 +70,108 @@ export default function NewPasswordForm() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-4 sm:p-8">
-      <div className="text-center mb-6 sm:mb-8">
-        <h2 className="text-2xl  font-bold text-slate-800 mb-2">
+    <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 space-y-6">
+      <div className="text-center flex flex-col gap-2">
+        <h2 className="text-2xl text-slate-800 leading-8 font-extrabold">
           Set New Password
         </h2>
-        <p className="text-[#485669] text-sm font-medium  ">
+        <p className="text-slate-600 text-sm font-medium">
           Create a strong password for your Appointege account
         </p>
       </div>
 
       {/* Form */}
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 flex flex-col"
-        >
-          {/* Password */}
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem className="space-y-[3px]">
-                <FormLabel className="text-black font-medium text-sm leading-5">
-                  New Password
-                </FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-                    <Input
-                      {...field}
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Create a password"
-                      disabled={isPending}
-                      className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium  "
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="w-4 h-4" />
-                      ) : (
-                        <Eye className="w-4 h-4" />
-                      )}
-                    </button>
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Confirm Password */}
-          <FormField
-            control={form.control}
-            name="password1"
-            render={({ field }) => (
-              <FormItem className="space-y-[3px]">
-                <FormLabel className="text-black font-medium text-sm leading-5">
-                  Confirm Password
-                </FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+      <div className="flex flex-col gap-4 ">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 ">
+            {/* Password */}
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem className="space-y-[3px]">
+                  <FormLabel className="text-black font-medium text-sm leading-5">
+                    New Password
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                      <Input
+                        {...field}
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Create a password"
+                        disabled={isPending}
+                        className="pl-9 pr-10 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
+                      </button>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Confirm Password */}
+            <FormField
+              control={form.control}
+              name="password1"
+              render={({ field }) => (
+                <FormItem className="space-y-[3px]">
+                  <FormLabel className="text-black font-medium text-sm leading-5">
+                    Confirm Password
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
 
-                    <Input
-                      {...field}
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Confirm password"
-                      disabled={isPending}
-                      className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium  "
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="w-4 h-4" />
-                      ) : (
-                        <Eye className="w-4 h-4" />
-                      )}
-                    </button>
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormError message={error} />
-          <FormSuccess message={success} />
-          {/* <Button disabled={isPending} type="submit">
+                      <Input
+                        {...field}
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Confirm password"
+                        disabled={isPending}
+                        className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium  "
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
+                      </button>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormError message={error} />
+            <FormSuccess message={success} />
+            {/* <Button disabled={isPending} type="submit">
             Rest Password
           </Button> */}
-          <Button
-            type="submit"
-            disabled={isPending}
-            className="cursor-pointer w-full h-11 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 text-sm leading-5"
-          >
-            {isPending ? "Updating Password..." : "Update Password"}
-          </Button>
-        </form>
-      </Form>
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="cursor-pointer w-full h-11 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 text-sm leading-5"
+            >
+              {isPending ? "Updating Password..." : "Update Password"}
+            </Button>
+          </form>
+        </Form>
+      </div>
       <div className="mt-6 text-center">
         <Link
           href="/sign-in"

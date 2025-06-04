@@ -96,122 +96,122 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6">
-      <div className="text-center mb-6">
+    <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-6 shadow-xl/30">
+      <div className="text-center flex flex-col gap-1">
         <h2 className="text-2xl text-slate-800 leading-8 font-extrabold">
           Welcome Back
         </h2>
-        <p className="text-[#485669] text-sm font-medium  ">
+        <p className="text-slate-600 text-sm font-medium  ">
           Sign in to your Appointege account
         </p>
       </div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-5">
-          {/* Email */}
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="space-y-[3px]">
-                <FormLabel className="text-black font-medium text-sm leading-5">
-                  Email Address
-                </FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      type="email"
-                      placeholder="Enter your email"
-                      className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium  "
-                      // className=""
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+      <div className="flex flex-col gap-4 ">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-4">
+            {/* Email */}
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem className="space-y-[3px]">
+                  <FormLabel className="text-black font-medium text-sm leading-5">
+                    Email Address
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        type="email"
+                        placeholder="Enter your email"
+                        className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium"
+                        // className=""
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          {/* Password */}
+            {/* Password */}
 
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem className="space-y-[3px]">
-                <FormLabel className="text-black font-medium text-sm leading-5">
-                  Password
-                </FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-                    <Input
-                      {...field}
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Enter your password"
-                      disabled={isPending}
-                      className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium  "
-                    />
-                    {/* Toggle Password */}
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="w-4 h-4" />
-                      ) : (
-                        <Eye className="w-4 h-4" />
-                      )}
-                    </button>
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem className="space-y-[3px]">
+                  <FormLabel className="text-black font-medium text-sm leading-5">
+                    Password
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                      <Input
+                        {...field}
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter your password"
+                        disabled={isPending}
+                        className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium  "
+                      />
+                      {/* Toggle Password */}
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
+                      </button>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="remember"
-                checked={rememberMe}
-                onCheckedChange={(checked) =>
-                  handleRememberMeChange(checked as boolean)
-                }
-                className="h-4 w-4 border-slate-300 data-[state=checked]:bg-sky-500 data-[state=checked]:border-sky-500"
-              />
-              <label
-                htmlFor="remember"
-                className="text-sm text-black cursor-pointer font-medium  "
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="remember"
+                  checked={rememberMe}
+                  onCheckedChange={(checked) =>
+                    handleRememberMeChange(checked as boolean)
+                  }
+                  className="h-4 w-4 border-slate-300 data-[state=checked]:bg-sky-500 data-[state=checked]:border-sky-500"
+                />
+                <label
+                  htmlFor="remember"
+                  className="text-sm text-black cursor-pointer font-medium  "
+                >
+                  Remember me
+                </label>
+              </div>
+              <Link
+                className="text-sm text-sky-600 hover:text-sky-700 font-semibold transition-colors"
+                href={"/reset-password"}
               >
-                Remember me
-              </label>
+                Forgot password?
+              </Link>
             </div>
-            <Link
-              className="text-sm text-sky-600 hover:text-sky-700 font-semibold transition-colors"
-              href={"/reset-password"}
+
+            <FormError message={error || urlError} />
+            <FormSuccess message={success} />
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="cursor-pointer w-full h-11 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 text-sm leading-5"
             >
-              Forgot password?
-            </Link>
-          </div>
-
-          <FormError message={error || urlError} />
-          <FormSuccess message={success} />
-          <Button
-            type="submit"
-            disabled={isPending}
-            className="cursor-pointer w-full h-11 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 text-sm leading-5"
-          >
-            {isPending ? "Signing in..." : "Sign In"}
-          </Button>
-        </form>
-      </Form>
-      {/*  */}
-
-      <Social />
+              {isPending ? "Signing in..." : "Sign In"}
+            </Button>
+          </form>
+        </Form>
+        <Social />
+      </div>
 
       <div className="mt-6 text-center">
         <p className="text-black text-sm font-normal">

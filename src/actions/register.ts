@@ -28,7 +28,7 @@ export async function register(values: SignupSchemaType) {
       email,
       password: hashedPassword,
       name,
-      phone: "",
+      phone: values.phone,
     },
   });
   if (!newUser) {

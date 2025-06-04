@@ -40,26 +40,26 @@ export default function VerifyEmail() {
   }, [token]);
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 w-full max-w-md">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl font-extrabold text-slate-800 leading-8 mb-2">
+    <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 space-y-6">
+      <div className="text-center flex flex-col gap-2">
+        <h2 className="text-2xl text-slate-800 leading-8 font-extrabold">
           {isLoading ? "Verifying Email..." : "Email Verification"}
         </h2>
-        <p className="text-[#485669] text-sm font-medium">
+        <p className="text-slate-600 text-sm font-medium">
           {isLoading
             ? "Please wait while we verify your email address"
             : "We're verifying your email address"}
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="flex flex-col gap-4 ">
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-8">
             <Loader2 className="w-8 h-8 text-sky-500 animate-spin mb-4" />
             <p className="text-slate-600">Confirming your email...</p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="flex flex-col gap-4">
             <FormError message={error} />
             <FormSuccess message={success} />
 

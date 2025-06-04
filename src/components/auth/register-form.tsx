@@ -25,6 +25,7 @@ import { Label } from "../ui/label";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { Social } from "./social";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 // import { login } from "@/actions/login"
 // import { register } from "@/actions/register"
 
@@ -74,218 +75,217 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 max-h-170 overflow-y-auto scrollbar-thin">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl font-extrabold text-slate-800 leading-8">
+    <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 space-y-6 max-h-170 overflow-y-auto scrollbar-thin">
+      <div className="text-center flex flex-col gap-1">
+        <div className="text-2xl font-extrabold text-slate-800 leading-8">
           Create Account
-        </h2>
+        </div>
         <p className="text-[#485669] text-sm font-medium  ">
           Join Appointege and start managing appointments
         </p>
       </div>
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-5">
-          {/* Name */}
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem className="space-y-[3px]">
-                <FormLabel className="text-black font-medium text-sm leading-5">
-                  Full Name
-                </FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    {" "}
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-                    <Input
-                      {...field}
-                      type="text"
-                      placeholder="Full name"
-                      disabled={isPending}
-                      className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium  "
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Email */}
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="space-y-[3px]">
-                <FormLabel className="text-black font-medium text-sm leading-5">
-                  Email Address
-                </FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      type="email"
-                      placeholder="Enter your email"
-                      className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium "
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Phone Number */}
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem className="space-y-[3px]">
-                <FormLabel className="text-black font-medium text-sm leading-5">
-                  Phone Number
-                </FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      type="tel"
-                      placeholder="Enter your phone number"
-                      className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium"
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Password */}
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem className="space-y-[3px]">
-                <FormLabel className="text-black font-medium text-sm leading-5">
-                  Password
-                </FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-                    <Input
-                      {...field}
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Create a password"
-                      disabled={isPending}
-                      className="pl-9 pr-10 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="w-4 h-4" />
-                      ) : (
-                        <Eye className="w-4 h-4" />
-                      )}
-                    </button>
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Confirm Password */}
-          <FormField
-            control={form.control}
-            name="password1"
-            render={({ field }) => (
-              <FormItem className="space-y-[3px]">
-                <FormLabel className="text-black font-medium text-sm leading-5">
-                  Confirm Password
-                </FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-
-                    <Input
-                      {...field}
-                      type={showPassword1 ? "text" : "password"}
-                      placeholder="Confirm password"
-                      disabled={isPending}
-                      className="pl-9 pr-10 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword1(!showPassword1)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
-                    >
-                      {showPassword1 ? (
-                        <EyeOff className="w-4 h-4" />
-                      ) : (
-                        <Eye className="w-4 h-4" />
-                      )}
-                    </button>
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormError message={error} />
-          <FormSuccess message={success} />
-          <div className="flex w-full items-start">
-            <Checkbox
-              id="terms"
-              checked={agreeToTerms}
-              onCheckedChange={handleTermsChange}
-              className="mt-0.5 h-4 w-4 flex-shrink-0 border-slate-300 data-[state=checked]:bg-sky-500 data-[state=checked]:border-sky-500"
+      <div className="flex flex-col gap-4">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-4">
+            {/* Name */}
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem className="space-y-[3px]">
+                  <FormLabel className="text-black font-medium text-sm leading-5">
+                    Full Name
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      {" "}
+                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                      <Input
+                        {...field}
+                        type="text"
+                        placeholder="Full name"
+                        disabled={isPending}
+                        className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium  "
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            <Label
-              htmlFor="terms"
-              className="ml-2 flex-wrap text-sm text-slate-600"
+
+            {/* Email */}
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem className="space-y-[3px]">
+                  <FormLabel className="text-black font-medium text-sm leading-5">
+                    Email Address
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        type="email"
+                        placeholder="Enter your email"
+                        className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium "
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Phone Number */}
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem className="space-y-[3px]">
+                  <FormLabel className="text-black font-medium text-sm leading-5">
+                    Phone Number
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        type="tel"
+                        placeholder="Enter your phone number"
+                        className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium"
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Password */}
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem className="space-y-[3px]">
+                  <FormLabel className="text-black font-medium text-sm leading-5">
+                    Password
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+                      <Input
+                        {...field}
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Create a password"
+                        disabled={isPending}
+                        className="pl-9 pr-10 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
+                      </button>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Confirm Password */}
+            <FormField
+              control={form.control}
+              name="password1"
+              render={({ field }) => (
+                <FormItem className="space-y-[3px]">
+                  <FormLabel className="text-black font-medium text-sm leading-5">
+                    Confirm Password
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+
+                      <Input
+                        {...field}
+                        type={showPassword1 ? "text" : "password"}
+                        placeholder="Confirm password"
+                        disabled={isPending}
+                        className="pl-9 pr-10 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword1(!showPassword1)}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                        {showPassword1 ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
+                      </button>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormError message={error} />
+            <FormSuccess message={success} />
+            <div className="flex w-full items-start">
+              <Checkbox
+                id="terms"
+                checked={agreeToTerms}
+                onCheckedChange={handleTermsChange}
+                className="mt-0.5 h-4 w-4 flex-shrink-0 border-slate-300 data-[state=checked]:bg-sky-500 data-[state=checked]:border-sky-500"
+              />
+              <Label htmlFor="terms" className="ml-2  text-sm text-slate-600">
+                <span className="whitespace-nowrap">
+                  I agree to the{" "}
+                  <a
+                    href="#"
+                    className="font-medium text-sky-600 hover:text-sky-700 hover:underline"
+                  >
+                    Terms of Service
+                  </a>{" "}
+                  and{" "}
+                  <a
+                    href="#"
+                    className="font-medium text-sky-600 hover:text-sky-700 hover:underline"
+                  >
+                    Privacy Policy
+                  </a>
+                </span>
+              </Label>
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isPending || !agreeToTerms}
+              className="w-full h-11 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 disabled:opacity-50 text-sm"
             >
-              <span className="whitespace-nowrap">
-                I agree to the{" "}
-                <a
-                  href="#"
-                  className="font-medium text-sky-600 hover:text-sky-700 hover:underline"
-                >
-                  Terms of Service
-                </a>{" "}
-                and{" "}
-                <a
-                  href="#"
-                  className="font-medium text-sky-600 hover:text-sky-700 hover:underline"
-                >
-                  Privacy Policy
-                </a>
-              </span>
-            </Label>
-          </div>
+              {isPending
+                ? "Creating Account..."
+                : "Create Account & Start Managing"}
+            </Button>
+          </form>
+        </Form>
 
-          <Button
-            type="submit"
-            disabled={isPending || !agreeToTerms}
-            className="w-full h-11 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 disabled:opacity-50 text-sm"
-          >
-            {isPending
-              ? "Creating Account..."
-              : "Create Account & Start Managing"}
-          </Button>
-        </form>
-      </Form>
-
-      <Social />
+        <Social />
+      </div>
 
       <div className="mt-6 text-center">
-        <p className="text-black text-sm font-normal">
+        <p className="text-slate-600 text-sm font-normal">
           Already have an account?{" "}
           <Link
             href={"/login"}

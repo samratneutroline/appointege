@@ -99,24 +99,24 @@ export default function ResetForm() {
     //   </Form>
     // </CardWrapper>
 
-    <Card className="bg-white/95 backdrop-blur-sm shadow-2xl border-0 transition-all duration-300 hover:shadow-3xl">
-      <CardHeader className="text-center pb-2 ">
-        <CardTitle className="text-2xl font-[800] text-gray-800">
+    <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 space-y-6">
+      <div className="text-center flex flex-col gap-2">
+        <h2 className="text-2xl text-slate-800 leading-8 font-extrabold">
           Reset Password
-        </CardTitle>
-        <p className="text-gray-600 leading-relaxed text-sm font-medium">
+        </h2>
+        <p className="text-slate-600 text-sm font-medium">
           Enter the email associated with your account, and we'll send you a
           password reset link.
         </p>
-      </CardHeader>
-      <CardContent className="space-y-6">
+      </div>
+      <div className="flex flex-col gap-4 ">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="space-y-1">
+                <FormItem className="space-y-[3px]">
                   <FormLabel className="text-slate-700 font-medium text-sm">
                     Email Address
                   </FormLabel>
@@ -128,7 +128,7 @@ export default function ResetForm() {
                         disabled={isPending}
                         type="email"
                         placeholder="Enter your email address"
-                        className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-lg text-sm font-medium"
+                        className="pl-9 h-11 border-slate-300 focus:border-sky-500 focus:ring-sky-500 rounded-xl text-sm font-medium"
                       />
                     </div>
                   </FormControl>
@@ -142,22 +142,22 @@ export default function ResetForm() {
             <Button
               disabled={isPending}
               type="submit"
-              className="w-full h-11 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 text-sm"
+              className="cursor-pointer w-full h-11 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-lg transition-all duration-200 transform hover:scale-[1.02] disabled:scale-100 text-sm leading-5"
             >
-              Rest Password
+              Send Reset Link
             </Button>
-
-            {/* Back to Login Link */}
-            <Link
-              href="/login"
-              className="w-full flex items-center justify-center text-sm text-sky-600 hover:text-sky-700  py-2 transition-all duration-200 hover:underline transform hover:scale-[1.02] font-bold"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Login
-            </Link>
           </form>
         </Form>
-      </CardContent>
-    </Card>
+
+        {/* Back to Login Link */}
+        <Link
+          href="/login"
+          className="flex items-center justify-center gap-2 text-sm mt-2 text-sky-600 hover:text-sky-700 font-semibold transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to Login
+        </Link>
+      </div>
+    </div>
   );
 }
